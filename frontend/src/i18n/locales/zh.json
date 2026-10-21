@@ -677,6 +677,7 @@
     "email": "邮件",
     "file_upload": "文件上传",
     "frontend": "前端",
+    "knowledge_base": "知识库",
     "llm": "大语言模型",
     "long_term_storage": "长期存储",
     "memory": "记忆",
@@ -1301,6 +1302,202 @@
     "zoomIn": "放大",
     "zoomOut": "缩小"
   },
+  "knowledge": {
+    "backToChat": "返回聊天",
+    "backToList": "返回知识库列表",
+    "title": "知识库",
+    "subtitle": "把文档整理成知识库，让昆小智基于你的资料回答问题",
+    "create": "新建知识库",
+    "searchPlaceholder": "搜索知识库名称或描述",
+    "loadFailed": "知识库加载失败",
+    "retryLoad": "重新加载",
+    "notReady": "管理员尚未配置向量模型，暂时无法入库。你仍可以创建知识库，配置完成后文档会自动处理。",
+    "disabledTitle": "知识库功能未开启",
+    "disabledDesc": "管理员已关闭知识库功能，请联系管理员开启。",
+    "notFoundTitle": "知识库不存在",
+    "notFoundDesc": "它可能已被删除，或你没有访问权限。",
+    "emptyTitle": "还没有知识库",
+    "emptyDesc": "新建一个知识库并上传文档，系统会自动解析、切分并建立检索索引。",
+    "noMatchTitle": "没有找到匹配的知识库",
+    "noMatchDesc": "换个关键词试试。",
+    "deleteTitle": "删除知识库",
+    "deleteConfirm": "确定删除“{{name}}”吗？库内所有文档、分块和检索索引都会被永久删除，此操作无法撤销。",
+    "tabs": {
+      "mine": "我的知识库",
+      "documents": "文档",
+      "search": "检索测试",
+      "settings": "设置"
+    },
+    "card": {
+      "docCount": "{{count}} 个文档",
+      "chunkCount": "{{count}} 个分块",
+      "processing": "处理中",
+      "failedCount": "{{count}} 个失败",
+      "indexOutdated": "需重建索引",
+      "noDescription": "暂无描述",
+      "more": "更多操作"
+    },
+    "dialog": {
+      "createTitle": "新建知识库",
+      "editTitle": "编辑知识库",
+      "createSubmit": "创建知识库",
+      "name": "名称",
+      "namePlaceholder": "例如：产品手册、项目资料",
+      "description": "描述",
+      "descriptionPlaceholder": "简单介绍这个知识库里放了什么（可选）",
+      "preset": "分块方式",
+      "advanced": "高级",
+      "chunkTokens": "块大小（tokens）",
+      "overlap": "重叠比例（%）",
+      "range": "范围 {{min}} – {{max}}"
+    },
+    "preset": {
+      "general": {
+        "name": "通用",
+        "desc": "适合大多数文档，按段落与句子智能切分。"
+      },
+      "qa": {
+        "name": "问答",
+        "desc": "适合问答对、FAQ，按问题与答案成对切分。"
+      },
+      "book": {
+        "name": "书籍",
+        "desc": "适合长篇书籍与报告，按章节层级切分。"
+      },
+      "laws": {
+        "name": "法规",
+        "desc": "适合制度、法规条文，按条款层级切分。"
+      }
+    },
+    "stats": {
+      "docs": "{{count}} 个文档",
+      "indexed": "{{count}} 已完成",
+      "processing": "{{count}} 处理中",
+      "failed": "{{count}} 失败",
+      "chunks": "{{count}} 个分块"
+    },
+    "status": {
+      "uploaded": "排队中",
+      "parsing": "解析中",
+      "parsed": "待入库",
+      "indexing": "入库中",
+      "indexed": "已完成",
+      "error_parsing": "解析失败",
+      "error_indexing": "入库失败",
+      "errorUnknown": "未知错误",
+      "clickToRetry": "点击重试"
+    },
+    "docs": {
+      "searchPlaceholder": "搜索文件名",
+      "selected": "已选 {{count}} 项",
+      "retrySelected": "重试失败项",
+      "deleteSelected": "批量删除",
+      "clearSelection": "取消选择",
+      "colName": "文件名",
+      "colStatus": "状态",
+      "colChunks": "分块",
+      "colSize": "大小",
+      "colUploaded": "上传时间",
+      "colActions": "操作",
+      "view": "查看",
+      "download": "下载",
+      "retry": "重试",
+      "emptyTitle": "还没有文档",
+      "emptyDesc": "上传 PDF、Word、PPT、表格、文本等文档，系统会自动解析并建立索引。",
+      "noMatchTitle": "没有匹配的文档",
+      "noMatchDesc": "换个文件名或状态筛选试试。",
+      "deleteTitle": "删除文档",
+      "deleteConfirm": "确定删除选中的 {{count}} 个文档吗？原文件、分块和检索索引都会被删除，无法恢复。"
+    },
+    "filter": {
+      "allStatus": "全部状态"
+    },
+    "task": {
+      "queued": "处理任务排队中",
+      "running": "已处理 {{done}}/{{total}}",
+      "failed": "{{count}} 个失败",
+      "cancel": "取消处理"
+    },
+    "outdated": {
+      "banner": "向量模型已变更，现有索引与当前模型不一致，检索暂时退化为关键词匹配。重建索引后恢复语义检索。",
+      "reindex": "重建索引"
+    },
+    "upload": {
+      "button": "上传文档",
+      "title": "上传文档",
+      "dropHint": "拖拽文件到这里，或点击选择文件",
+      "limits": "单个文件不超过 {{max}} MB",
+      "supported": "支持：{{list}}",
+      "pending": "等待上传",
+      "done": "已上传",
+      "duplicate": "已存在，已跳过",
+      "retry": "重试",
+      "cancelAll": "取消上传",
+      "autoProcessHint": "上传完成后会自动解析并入库，可在文档列表查看进度。",
+      "errors": {
+        "extension": "不支持的文件类型：{{ext}}",
+        "empty": "文件为空",
+        "size": "文件超过 {{max}} MB 限制"
+      }
+    },
+    "doc": {
+      "tabContent": "解析内容",
+      "tabChunks": "分块",
+      "chunkCount": "{{count}} 个分块",
+      "totalLines": "共 {{count}} 行",
+      "totalChunks": "共 {{count}} 个分块",
+      "lines": "第 {{range}} 行",
+      "tokens": "{{count}} tokens",
+      "loadPrevious": "加载上文",
+      "loadMore": "加载更多",
+      "locate": "定位到原文",
+      "noContent": "暂无解析内容",
+      "noChunks": "暂无分块，文档入库完成后可在这里查看。"
+    },
+    "search": {
+      "placeholder": "输入问题或关键词，按回车检索",
+      "button": "检索",
+      "modeLabel": "检索方式",
+      "mode": {
+        "hybrid": "混合检索",
+        "vector": "语义检索",
+        "keyword": "关键词检索"
+      },
+      "topK": "返回数量",
+      "threshold": "相似度阈值",
+      "rerank": "重排序",
+      "rerankUnavailable": "管理员尚未配置重排序模型",
+      "noIndexed": "这个知识库还没有处理完成的文档，检索不会有结果。",
+      "indexOutdated": "索引与当前向量模型不一致，本次已退化为关键词检索。请在文档页重建索引。",
+      "initialHint": "输入一个问题试试，看看知识库能召回哪些内容。",
+      "noResults": "没有找到相关内容",
+      "noResultsHint": "可以降低相似度阈值，或换一种检索方式。",
+      "summary": "找到 {{count}} 条结果，用时 {{ms}} ms",
+      "scoreBoth": "检索得分 {{score}} · 重排得分 {{rerank}}"
+    },
+    "settings": {
+      "basic": "基本信息",
+      "chunkNote": "分块设置的修改仅对之后新入库的文档生效。保存后可以点击“重建索引”，把新设置应用到全部已有文档。",
+      "rebuildHint": "新的分块设置只对新入库的文档生效。要应用到已有文档，请重建索引。",
+      "danger": "危险操作",
+      "deleteDesc": "删除知识库会同时删除库内所有文档、分块与检索索引，且无法恢复。",
+      "deleteButton": "删除知识库"
+    },
+    "toast": {
+      "created": "知识库已创建，现在可以上传文档了",
+      "updated": "已保存修改",
+      "deleted": "知识库已删除",
+      "docsDeleted": "已删除 {{count}} 个文档",
+      "retryQueued": "已将 {{count}} 个文档重新加入处理队列",
+      "reindexQueued": "已开始重建索引，共 {{count}} 个文档",
+      "reindexNothing": "没有需要重建索引的文档",
+      "taskCancelled": "已请求取消处理任务"
+    },
+    "errors": {
+      "disabled": "知识库功能未开启",
+      "notFound": "知识库不存在"
+    }
+  },
   "landing": {
     "agentSystem": "Agent 编排系统",
     "agentSystemDesc": "编排多步骤 Agent 工作、任务交接、流式输出和可扩展 Agent 类型，服务真实内部流程。",
@@ -1657,7 +1854,8 @@
     "users": "用户",
     "workspace": "专家 · 技能 · 连接器",
     "scheduledTasks": "定时任务",
-    "scheduledTasksAdmin": "定时任务管理"
+    "scheduledTasksAdmin": "定时任务管理",
+    "knowledge": "知识库"
   },
   "navDesc": {
     "agents": "配置和管理 AI 助手",
@@ -2126,6 +2324,10 @@
     "scheduledTasksAdmin": {
       "title": "定时任务管理",
       "description": "查看与管控所有用户的定时任务"
+    },
+    "knowledge": {
+      "title": "知识库",
+      "description": "创建个人知识库，上传文档后让昆小智基于你的资料检索和回答问题"
     }
   },
   "openSandboxAdmin": {
@@ -2418,7 +2620,13 @@
     "SCHEDULED_TASK_MIN_INTERVAL_HOURS": "“每隔几小时”任务允许的最小间隔（小时）",
     "SCHEDULED_TASK_CHAT_TOOL_ENABLED": "允许在聊天中查询和管理定时任务",
     "SCHEDULED_TASK_MAX_CONCURRENT_RUNS": "定时任务全局并发上限（超过后排队等待）",
-    "SCHEDULED_TASK_QUEUE_TIMEOUT_MINUTES": "定时任务排队最长等待时间（分钟，超时则跳过本次执行）"
+    "SCHEDULED_TASK_QUEUE_TIMEOUT_MINUTES": "定时任务排队最长等待时间（分钟，超时则跳过本次执行）",
+    "KB_ENABLED": "是否启用个人知识库功能。关闭后左侧导航隐藏入口，所有知识库接口返回未开启。",
+    "KB_EMBEDDING_MODEL_ID": "知识库向量化使用的模型卡片 ID（kind=embedding）；留空则沿用原生记忆的向量模型。更换模型后已有知识库需重建索引。",
+    "KB_RERANK_MODEL_ID": "知识库检索重排序使用的模型卡片 ID（kind=rerank）；留空则不重排序。",
+    "KB_WORKER_CONCURRENCY": "知识库后台处理任务的并发数（1-16），修改后需重启服务生效。",
+    "KB_MAX_FILE_MB": "知识库单个上传文件的大小上限（MB）。",
+    "KB_EMBEDDING_BATCH_SIZE": "知识库向量化每批发送的文本条数（1-256）。"
   },
   "settings": {
     "defaultModel": "默认模型",

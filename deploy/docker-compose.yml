@@ -19,6 +19,13 @@ services:
     volumes:
       - mongodb-data:/data/db
 
+  qdrant:
+    image: qdrant/qdrant:v1.15.5
+    container_name: kunxiaozhi-qdrant
+    restart: always
+    volumes:
+      - qdrant-data:/qdrant/storage
+
   kunxiaozhi:
     container_name: kunxiaozhi
     image: ghcr.io/123zhaozheng/kunxiaozhi:latest
@@ -36,12 +43,15 @@ services:
         condition: service_started
       mongodb:
         condition: service_started
+      qdrant:
+        condition: service_started
     environment:
       - TZ=Asia/Shanghai
       - HOST=0.0.0.0
       - PORT=8000
       - REDIS_URL=redis://redis:6379/0
       - MONGODB_URL=mongodb://mongodb:27017
+      - QDRANT_URL=http://qdrant:6333
       - LLM_MODEL_CACHE_SIZE=${LLM_MODEL_CACHE_SIZE:-50}
       - SESSION_MAX_EVENTS_PER_TRACE=${SESSION_MAX_EVENTS_PER_TRACE:-10000}
       - LOG_LEVEL=INFO
@@ -55,4 +65,5 @@ services:
 volumes:
   redis-data:
   mongodb-data:
+  qdrant-data:
   lamb-data:
