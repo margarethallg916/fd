@@ -36,7 +36,8 @@ export type SettingCategory =
   | "memory_storage"
   | "audio_transcription"
   | "dify"
-  | "document_parse";
+  | "document_parse"
+  | "knowledge_base";
 
 // Setting dependency condition
 export interface SettingDependsOn {
