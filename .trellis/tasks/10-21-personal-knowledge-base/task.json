@@ -1,0 +1,31 @@
+{
+  "id": "personal-knowledge-base",
+  "name": "personal-knowledge-base",
+  "title": "Personal knowledge base (IMA-style, shareable)",
+  "description": "",
+  "status": "planning",
+  "dev_type": null,
+  "scope": null,
+  "package": null,
+  "priority": "P2",
+  "creator": "hoplite",
+  "assignee": "hoplite",
+  "createdAt": "2026-10-21",
+  "completedAt": null,
+  "branch": null,
+  "base_branch": "main",
+  "worktree_path": null,
+  "commit": null,
+  "pr_url": null,
+  "subtasks": [],
+  "children": [
+    "10-21-kb-core-ingestion",
+    "10-21-kb-share-subscribe-quota",
+    "10-21-kb-agent-tools",
+    "10-21-kb-graph"
+  ],
+  "parent": null,
+  "relatedFiles": [],
+  "notes": "",
+  "meta": {}
+}
