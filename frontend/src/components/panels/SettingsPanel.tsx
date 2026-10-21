@@ -86,6 +86,7 @@ export function SettingsPanel() {
       audio_transcription: t("categories.audio_transcription"),
       dify: t("categories.dify"),
       document_parse: t("categories.document_parse"),
+      knowledge_base: t("categories.knowledge_base"),
       tracing: t("categories.tracing"),
       user: t("categories.user"),
       oauth: t("categories.oauth"),
