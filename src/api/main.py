@@ -5,6 +5,7 @@ API 入口点。
 """
 
 import asyncio
+import re
 import warnings
 from collections import OrderedDict
 from contextlib import asynccontextmanager
@@ -29,6 +30,7 @@ from src.api.routes import (
     github,
     health,
     human,
+    knowledge_base,
     mcp,
     memory,
     notification,
@@ -99,7 +101,9 @@ _LIFESPAN_BACKGROUND_TASK_NAMES = (
     "stale_task_cleanup_task",
     "wecom_task",
     "storage_maintenance_task",
+    "kb_reconcile_task",
 )
+_KB_UPLOAD_PATH = re.compile(r"^/api/kb/[^/]+/documents/upload$")
 
 
 def _is_body_limit_exempt(scope: Scope) -> bool:
@@ -114,6 +118,7 @@ def _is_body_limit_exempt(scope: Scope) -> bool:
         return False
     return (
         path in API_MULTIPART_UPLOAD_PATHS
+        or _KB_UPLOAD_PATH.match(path) is not None
         or path.startswith("/api/skills/upload")
         or (path.startswith("/api/skills/") and "/binary-files/" in path)
         or path.startswith("/api/admin/builtin-skills/zip")
@@ -339,6 +344,15 @@ def _schedule_storage_maintenance(app: FastAPI) -> asyncio.Task[None]:
     return task
 
 
+def _schedule_kb_reconcile(app: FastAPI) -> asyncio.Task[None]:
+    """Recover knowledge base tasks/documents independently of arq and Redis."""
+    from src.infra.knowledge_base.runtime import run_reconcile_loop
+
+    task = asyncio.create_task(run_reconcile_loop(), name="kb:reconcile")
+    app.state.kb_reconcile_task = task
+    return task
+
+
 async def _cancel_lifespan_background_tasks_for_shutdown(app: FastAPI) -> None:
     await _cancel_background_tasks(app, *_LIFESPAN_BACKGROUND_TASK_NAMES)
 
@@ -411,6 +425,16 @@ def _startup_index_initializers():
         await UserStorageQuotaStorage().ensure_indexes()
         logger.info("Personal storage domain indexes initialized")
 
+    async def _init_kb_storage() -> None:
+        # Optional feature: an index problem must never keep the whole app from starting.
+        try:
+            from src.infra.knowledge_base.storage import get_kb_storage
+
+            await get_kb_storage().ensure_indexes()
+            logger.info("Knowledge base indexes initialized")
+        except Exception:
+            logger.error("Knowledge base index initialization failed", exc_info=True)
+
     return [
         ("agent_config_storage", _init_agent_config_storage),
         ("model_storage", _init_model_storage),
@@ -422,6 +446,7 @@ def _startup_index_initializers():
         ("analytics_storage", _init_analytics_storage),
         ("wecom_notify_bindings", _init_wecom_notify_bindings),
         ("storage_domain", _init_storage_domain),
+        ("knowledge_base", _init_kb_storage),
     ]
 
 
@@ -531,6 +556,7 @@ async def lifespan(app: FastAPI):
     # Quota/lifecycle recovery is Mongo-backed and must continue even when Redis
     # is evicted or restarted.
     _schedule_storage_maintenance(app)
+    _schedule_kb_reconcile(app)
 
     # 后台预加载模型列表；请求路径仍有 memory -> Redis -> DB 懒加载兜底。
     _schedule_models_cache_warmup(app)
@@ -689,6 +715,13 @@ async def lifespan(app: FastAPI):
         # 先停止分布式运行时监听器，再关闭任务
         await stop_runtime_services()
         logger.info("Runtime distributed listeners stopped")
+
+        try:
+            from src.infra.knowledge_base.vector_store import close_vector_store
+
+            await close_vector_store()
+        except Exception as e:
+            logger.warning("Failed to close knowledge base vector store: %s", e)
 
         memory_monitor = get_memory_monitor()
         await memory_monitor.stop()
@@ -857,6 +890,7 @@ def create_app() -> FastAPI:
     app.include_router(envvar.router, prefix="/api/env-vars", tags=["Environment Variables"])
     app.include_router(upload.router, prefix="/api/upload", tags=["Upload"])
     app.include_router(storage.router, prefix="/api/storage", tags=["Storage"])
+    app.include_router(knowledge_base.router, prefix="/api/kb", tags=["Knowledge Base"])
     app.include_router(revealed_file.router, prefix="/api/files", tags=["Files"])
     app.include_router(human.router, prefix="/human", tags=["Human"])
     app.include_router(feedback.router, prefix="/api/feedback", tags=["Feedback"])
