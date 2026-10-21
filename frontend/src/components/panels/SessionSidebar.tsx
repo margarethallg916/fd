@@ -114,7 +114,8 @@ export const SessionSidebar = forwardRef<
     top: number;
     left: number;
   } | null>(null);
-  const { enableMemory, enableScheduledTasks } = useSettingsContext();
+  const { enableMemory, enableScheduledTasks, enableKnowledgeBase } =
+    useSettingsContext();
 
   const canReadMemory = enableMemory;
   const moreMenuFeatureItems = [
@@ -655,6 +656,7 @@ export const SessionSidebar = forwardRef<
             onOpenSearch={() => setIsSearchOpen(true)}
             onShowProfile={onShowProfile!}
             hasMoreMenuItems={hasMoreMenuItems}
+            showKnowledgeBase={enableKnowledgeBase}
             onToggleMoreMenu={() => setIsMoreMenuOpen((prev) => !prev)}
             expandedMoreMenuBtnRef={expandedMoreMenuBtnRef}
             scrollEl={scrollEl}
@@ -717,6 +719,7 @@ export const SessionSidebar = forwardRef<
               onOpenSearch={() => setIsSearchOpen(true)}
               onShowProfile={onShowProfile!}
               hasMoreMenuItems={hasMoreMenuItems}
+              showKnowledgeBase={enableKnowledgeBase}
               onToggleMoreMenu={() => setIsMoreMenuOpen((prev) => !prev)}
               expandedMoreMenuBtnRef={expandedMoreMenuBtnRef}
               scrollEl={scrollEl}
@@ -770,6 +773,8 @@ export const SessionSidebar = forwardRef<
             }}
             onOpenRecentChats={() => setIsRecentChatsOpen(true)}
             onOpenFileLibrary={() => navigate("/files")}
+            onOpenKnowledgeBase={() => navigate("/knowledge")}
+            showKnowledgeBase={enableKnowledgeBase}
             onOpenWorkspace={() => navigate("/workspace")}
             onOpenTeamBuilder={() => navigate("/team")}
             hasMoreMenuItems={hasMoreMenuItems}
