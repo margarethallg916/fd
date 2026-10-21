@@ -29,6 +29,7 @@ RESTART_REQUIRED_SETTINGS = {
     "REDIS_SENTINEL_PASSWORD",
     "JWT_SECRET_KEY",
     "WECOM_RUNTIME_MODE",
+    "KB_WORKER_CONCURRENCY",
     # OTEL instrumentor / TracerProvider cannot be hot-swapped
     "TRACING_PROVIDER",
     "PHOENIX_COLLECTOR_ENDPOINT",
