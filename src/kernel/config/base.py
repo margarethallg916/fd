@@ -412,6 +412,20 @@ class Settings(BaseSettings):
     SCHEDULED_TASK_MAX_CONCURRENT_RUNS: int = 10
     SCHEDULED_TASK_QUEUE_TIMEOUT_MINUTES: int = 20
 
+    # Personal knowledge base (admin-tunable)
+    KB_ENABLED: bool = True
+    KB_EMBEDDING_MODEL_ID: str = ""
+    KB_RERANK_MODEL_ID: str = ""
+    KB_WORKER_CONCURRENCY: int = 4
+    KB_MAX_FILE_MB: int = 100
+    KB_EMBEDDING_BATCH_SIZE: int = 32
+    # Personal knowledge base (environment only)
+    QDRANT_URL: str = ""
+    QDRANT_API_KEY: str = ""
+    QDRANT_LOCAL_PATH: str = "data/qdrant"
+    KB_ARQ_QUEUE_NAME: str = "kunxiaozhi:kb"
+    KB_JOB_TIMEOUT_SECONDS: int = 7200
+
     # Native Memory Settings (MongoDB-backed, zero external deps)
     NATIVE_MEMORY_EMBEDDING_MODEL_ID: str = ""
     NATIVE_MEMORY_STALENESS_DAYS: int = 30

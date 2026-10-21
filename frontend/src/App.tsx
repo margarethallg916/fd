@@ -263,6 +263,15 @@ function FilesPage() {
   return <AppContent key="files" activeTab="files" />;
 }
 
+function KnowledgePage() {
+  useSEO({
+    title: "seo.knowledge.title",
+    description: "seo.knowledge.description",
+    path: "/knowledge",
+  });
+  return <AppContent key="knowledge" activeTab="knowledge" />;
+}
+
 function TeamPage() {
   useSEO({
     title: "seo.team.title",
@@ -599,6 +608,14 @@ function App() {
               element={
                 <ProtectedRoute loadingComponent={<FilesPageSkeleton />}>
                   <FilesPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/knowledge/:kbId?"
+              element={
+                <ProtectedRoute>
+                  <KnowledgePage />
                 </ProtectedRoute>
               }
             />
