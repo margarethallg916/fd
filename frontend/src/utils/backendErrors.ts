@@ -11,10 +11,13 @@ const BACKEND_ERROR_KEYS: Record<string, string> = {
   model_not_allowed: "errors.modelNotAllowed",
   storage_quota_exceeded: "storage.quotaExceeded",
   storage_operation_too_large: "storage.quotaExceeded",
+  kb_disabled: "knowledge.errors.disabled",
   file_deleted: "storage.deleted",
   managed_by_source: "storage.protectedHint",
 
   // Stable HTTPException detail strings
+  知识库功能未开启: "knowledge.errors.disabled",
+  知识库不存在: "knowledge.errors.notFound",
   未提供认证信息: "backendErrors.authMissing",
   "无效的 Token": "backendErrors.invalidToken",
   用户不存在: "backendErrors.userNotFound",
