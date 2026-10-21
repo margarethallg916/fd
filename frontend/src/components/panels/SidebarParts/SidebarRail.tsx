@@ -4,6 +4,7 @@ import {
   Clock,
   MoreHorizontal,
   FolderOpen,
+  LibraryBig,
   Sparkles,
   Users,
 } from "lucide-react";
@@ -26,6 +27,8 @@ interface SidebarRailProps {
   onOpenSearch: () => void;
   onOpenRecentChats: () => void;
   onOpenFileLibrary: () => void;
+  onOpenKnowledgeBase: () => void;
+  showKnowledgeBase: boolean;
   onOpenWorkspace: () => void;
   onOpenTeamBuilder: () => void;
   hasMoreMenuItems: boolean;
@@ -45,6 +48,8 @@ export function SidebarRail({
   onOpenSearch,
   onOpenRecentChats,
   onOpenFileLibrary,
+  onOpenKnowledgeBase,
+  showKnowledgeBase,
   onOpenWorkspace,
   onOpenTeamBuilder,
   hasMoreMenuItems,
@@ -66,6 +71,7 @@ export function SidebarRail({
     "/builtin-skills",
     "/mcp",
   ].includes(location.pathname);
+  const isKnowledgeActive = location.pathname.startsWith("/knowledge");
 
   return (
     <nav
@@ -157,6 +163,18 @@ export function SidebarRail({
         >
           <FolderOpen size={20} />
         </button>
+        {showKnowledgeBase && (
+          <button
+            type="button"
+            onClick={onOpenKnowledgeBase}
+            className={`${railBtn} ${isKnowledgeActive ? "is-active" : ""}`}
+            title={t("nav.knowledge", "知识库")}
+            aria-label={t("nav.knowledge", "知识库")}
+            aria-current={isKnowledgeActive ? "page" : undefined}
+          >
+            <LibraryBig size={20} />
+          </button>
+        )}
         <button
           type="button"
           ref={recentChatsBtnRef}
