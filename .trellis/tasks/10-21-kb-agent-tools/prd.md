@@ -1,19 +1,21 @@
-# KB agent tools and citation display
+# 昆小智知识库工具 + 对话启用 + @知识库 + 引用来源（PR3）
+
+> 父任务 `10-21-personal-knowledge-base`（决策 11）。设计见 `design.md`。叠加在 PR2 之上。
 
 ## Goal
 
-TBD.
+昆小智能在对话中检索用户可访问且已启用的知识库（自己的、共享的、订阅的），用户可在输入框 `@知识库` 临时指定检索范围，回答展示引用来源卡片；昆小智可以把内容「存入知识库」，但必须由用户在卡片里确认。
 
 ## Requirements
 
-- TBD
+- R1 每成员「对话中启用」开关；工具范围解析每次实时授权。
+- R2 五个检索类工具 + 一个草稿式写工具（design §4），中文描述写在源码，结果 ≤8000 字符可被前端结构化渲染。
+- R3 `kb_ids` 每轮传递、不持久化到会话配置；客户端伪造键被清洗。
+- R4 系统提示注入可用知识库清单与本轮 @ 指令。
+- R5 前端 `@` 弹窗知识库分组 + chip；检索结果卡、草稿确认卡、消息级参考来源；执行过程分组规则更新。
+- R6 写工具排除于定时任务、团队路由、企业微信。
 
 ## Acceptance Criteria
 
-- [ ] TBD
-
-## Notes
-
-- Keep `prd.md` focused on requirements, constraints, and acceptance criteria.
-- Lightweight tasks can remain PRD-only.
-- For complex tasks, add `design.md` for technical design and `implement.md` for execution planning before `task.py start`.
+- [ ] 后端/前端测试覆盖 design §7；全量测试失败集合不超过基线；ruff/mypy/tsc/lint/build 通过。
+- [ ] 本地用一个可用的 chat 模型卡（若环境可配置）或工具直调验证：@ 指定知识库提问 → 调用 `search_knowledge_base` → 引用卡片可点开原文；「存入知识库」草稿确认后文档入库。
