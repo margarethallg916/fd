@@ -12,6 +12,7 @@ export type TabType =
   | "feedback"
   | "agents"
   | "files"
+  | "knowledge"
   | "notifications"
   | "memory"
   | "scheduled"
