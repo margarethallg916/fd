@@ -55,6 +55,7 @@ class SettingCategory(str, Enum):
     AUDIO_TRANSCRIPTION = "audio_transcription"
     DIFY = "dify"
     DOCUMENT_PARSE = "document_parse"
+    KNOWLEDGE_BASE = "knowledge_base"
 
 
 class JsonSchemaField(BaseModel):
