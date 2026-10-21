@@ -4,6 +4,7 @@ import {
   Search,
   FolderPlus,
   FolderOpen,
+  LibraryBig,
   MessageSquarePlus,
   MoreHorizontal,
   Sparkles,
@@ -67,6 +68,7 @@ interface SessionListContentProps {
   onOpenSearch: () => void;
   onShowProfile: () => void;
   hasMoreMenuItems: boolean;
+  showKnowledgeBase: boolean;
   onToggleMoreMenu: () => void;
   expandedMoreMenuBtnRef: React.RefObject<HTMLButtonElement | null>;
   scrollEl: HTMLDivElement | null;
@@ -101,6 +103,7 @@ export function SessionListContent({
   onOpenSearch,
   onShowProfile,
   hasMoreMenuItems,
+  showKnowledgeBase,
   onToggleMoreMenu,
   expandedMoreMenuBtnRef,
   scrollEl,
@@ -137,6 +140,7 @@ export function SessionListContent({
     "/builtin-skills",
     "/mcp",
   ].includes(location.pathname);
+  const isKnowledgeActive = location.pathname.startsWith("/knowledge");
 
   const chatsUnreadCount = getUnreadCountForUncategorized({
     loadedSessions: uncategorizedSessions,
@@ -236,6 +240,18 @@ export function SessionListContent({
           <FolderOpen size={20} />
           <span>{t("fileLibrary.title")}</span>
         </button>
+
+        {showKnowledgeBase && (
+          <button
+            type="button"
+            onClick={() => navigate("/knowledge")}
+            className={`sidebar-nav-btn w-full h-8 rounded-[10px] flex items-center gap-3 px-[9px] focus:outline-none transition-colors ${isKnowledgeActive ? "is-active" : ""}`}
+            aria-current={isKnowledgeActive ? "page" : undefined}
+          >
+            <LibraryBig size={20} />
+            <span>{t("nav.knowledge", "知识库")}</span>
+          </button>
+        )}
 
         {hasMoreMenuItems && (
           <div className="relative">
