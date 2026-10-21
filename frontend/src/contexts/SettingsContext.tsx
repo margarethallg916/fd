@@ -28,6 +28,7 @@ interface SettingsContextValue {
   enableSkills: boolean;
   enableMemory: boolean;
   enableScheduledTasks: boolean;
+  enableKnowledgeBase: boolean;
   isLoading: boolean;
   error: string | null;
   savingKeys: Set<string>;
@@ -59,6 +60,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
     error,
     savingKeys,
     getBooleanSetting,
+    getSettingValue,
     updateSetting,
     resetSetting,
     resetAllSettings,
@@ -161,6 +163,10 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
     enableSkills: getBooleanSetting("ENABLE_SKILLS"),
     enableMemory: getBooleanSetting("ENABLE_MEMORY"),
     enableScheduledTasks: getBooleanSetting("SCHEDULED_TASK_ENABLED"),
+    // Show the entry until the flag is known to be off (e.g. while settings load).
+    enableKnowledgeBase:
+      getSettingValue("KB_ENABLED") === undefined ||
+      getBooleanSetting("KB_ENABLED"),
     availableModels,
     defaultModel,
     pinnedModelIds: cleanedPinnedIds,
