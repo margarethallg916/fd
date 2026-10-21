@@ -10,6 +10,7 @@ from __future__ import annotations
 from src.agents.core.recommendations import drain_recommend_background_tasks
 from src.infra.async_utils import shutdown_blocking_io_executor
 from src.infra.llm.pubsub import get_model_config_pubsub
+from src.infra.logging import get_logger
 from src.infra.monitoring.event_loop import (
     start_event_loop_lag_monitor,
     stop_event_loop_lag_monitor,
@@ -27,6 +28,8 @@ from src.infra.tool.mcp_global import get_mcp_cache_pubsub
 from src.infra.tool.mcp_pool import close_all_connections as close_mcp_pool_connections
 from src.infra.websocket import get_connection_manager
 from src.kernel.config import settings
+
+logger = get_logger(__name__)
 
 
 def get_memory_pubsub():
@@ -77,6 +80,18 @@ def start_memory_compaction_agent() -> None:
     start_memory_compaction_agent()
 
 
+async def start_kb_runtime() -> None:
+    from src.infra.knowledge_base.runtime import start_kb_runtime as _start
+
+    await _start()
+
+
+async def stop_kb_runtime() -> None:
+    from src.infra.knowledge_base.runtime import stop_kb_runtime as _stop
+
+    await _stop()
+
+
 async def start_runtime_services() -> None:
     """Start distributed runtime listeners needed by the current process."""
     import asyncio
@@ -86,6 +101,10 @@ async def start_runtime_services() -> None:
     task_manager = get_task_manager()
     await task_manager.start_pubsub_listener()
     await start_arq_runtime()
+    try:
+        await start_kb_runtime()
+    except Exception as exc:  # noqa: BLE001 - the knowledge base must never block startup
+        logger.warning("[KB] runtime failed to start: %s", exc)
 
     # Launch all pub/sub listeners concurrently to reduce startup wall-clock time.
     settings_pubsub = get_settings_pubsub()
@@ -152,6 +171,10 @@ async def stop_runtime_services() -> None:
     await settings_pubsub.stop_listener()
 
     task_manager = get_task_manager()
+    try:
+        await stop_kb_runtime()
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("[KB] runtime failed to stop cleanly: %s", exc)
     await stop_arq_runtime()
     await task_manager.stop_pubsub_listener()
     await drain_upload_delete_tasks()
