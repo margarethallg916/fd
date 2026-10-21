@@ -34,12 +34,25 @@ export interface FeedbackNotification {
   };
 }
 
+export interface KbEventNotification {
+  type: `kb:${string}`;
+  data: {
+    kb_id?: string;
+    doc_id?: string;
+    status?: string;
+    task_id?: string;
+    progress?: Record<string, unknown>;
+    [key: string]: unknown;
+  };
+}
+
 interface UseWebSocketOptions {
   onScheduledTaskFinished?: (
     notification: ScheduledTaskRunFinishedNotification,
   ) => void;
   onTaskComplete?: (notification: TaskCompleteNotification) => void;
   onFeedbackNotification?: (notification: FeedbackNotification) => void;
+  onKbEvent?: (event: KbEventNotification) => void;
   enabled?: boolean;
 }
 
@@ -55,6 +68,7 @@ export function useWebSocket(options: UseWebSocketOptions = {}) {
     onTaskComplete,
     onFeedbackNotification,
     onScheduledTaskFinished,
+    onKbEvent,
     enabled = true,
   } = options;
   const wsRef = useRef<WebSocket | null>(null);
@@ -64,6 +78,7 @@ export function useWebSocket(options: UseWebSocketOptions = {}) {
   const onTaskCompleteRef = useRef(onTaskComplete);
   const onFeedbackNotificationRef = useRef(onFeedbackNotification);
   const onScheduledTaskFinishedRef = useRef(onScheduledTaskFinished);
+  const onKbEventRef = useRef(onKbEvent);
   const isMountedRef = useRef(true);
   const [isConnected, setIsConnected] = useState(false);
 
@@ -88,6 +103,10 @@ export function useWebSocket(options: UseWebSocketOptions = {}) {
   useEffect(() => {
     onScheduledTaskFinishedRef.current = onScheduledTaskFinished;
   }, [onScheduledTaskFinished]);
+
+  useEffect(() => {
+    onKbEventRef.current = onKbEvent;
+  }, [onKbEvent]);
 
   const connect = useCallback(async () => {
     // Prevent multiple simultaneous connection attempts
@@ -195,6 +214,14 @@ export function useWebSocket(options: UseWebSocketOptions = {}) {
             onScheduledTaskFinishedRef.current
           ) {
             onScheduledTaskFinishedRef.current(message);
+          }
+
+          if (
+            typeof message.type === "string" &&
+            message.type.startsWith("kb:") &&
+            onKbEventRef.current
+          ) {
+            onKbEventRef.current(message);
           }
         } catch (e) {
           console.error("[WebSocket] Failed to parse message:", e);
