@@ -62,6 +62,7 @@ dependencies = [
     "arize-phoenix-otel>=0.16.0",
     "openinference-instrumentation-langchain>=0.1.67",
     "zxcvbn==4.5.0",
+    "qdrant-client>=1.15.0",
 ]
 
 [dependency-groups]
