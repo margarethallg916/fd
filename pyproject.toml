@@ -63,6 +63,11 @@ dependencies = [
     "openinference-instrumentation-langchain>=0.1.67",
     "zxcvbn==4.5.0",
     "qdrant-client>=1.15.0",
+    "pypdf",
+    "openpyxl",
+    "xlrd",
+    "markdownify",
+    "python-docx",
 ]
 
 [dependency-groups]
