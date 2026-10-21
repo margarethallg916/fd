@@ -1,6 +1,6 @@
 # Implement: KB core（PR1）
 
-> 配套 `prd.md` / `design.md`。子代理模型 claude-sonnet-5-5（用户指定）；三个实现包并行（写集合互不重叠），完成后由新的 check 子代理统一复核。
+> 配套 `prd.md` / `design.md`。子代理模型 businessfruitsocial（用户指定）；三个实现包并行（写集合互不重叠），完成后由新的 check 子代理统一复核。
 
 ## 0. 前置（主代理已完成）
 
