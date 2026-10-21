@@ -677,6 +677,7 @@
     "email": "Email",
     "file_upload": "File Upload",
     "frontend": "Frontend",
+    "knowledge_base": "Knowledge Base",
     "llm": "LLM",
     "long_term_storage": "Long-term Storage",
     "memory": "Memory",
@@ -1301,6 +1302,202 @@
     "zoomIn": "Zoom In",
     "zoomOut": "Zoom Out"
   },
+  "knowledge": {
+    "backToChat": "Back to chat",
+    "backToList": "Back to knowledge bases",
+    "title": "Knowledge Base",
+    "subtitle": "Turn your documents into a knowledge base so Kunxiaozhi can answer from your material",
+    "create": "New knowledge base",
+    "searchPlaceholder": "Search knowledge bases by name or description",
+    "loadFailed": "Failed to load the knowledge base",
+    "retryLoad": "Reload",
+    "notReady": "The administrator has not configured an embedding model yet, so documents cannot be indexed for now. You can still create knowledge bases; documents will be processed once it is configured.",
+    "disabledTitle": "Knowledge base is turned off",
+    "disabledDesc": "The administrator has turned off the knowledge base feature. Please contact them to enable it.",
+    "notFoundTitle": "Knowledge base not found",
+    "notFoundDesc": "It may have been deleted, or you may not have access to it.",
+    "emptyTitle": "No knowledge bases yet",
+    "emptyDesc": "Create a knowledge base and upload documents. They are parsed, chunked and indexed automatically.",
+    "noMatchTitle": "No matching knowledge bases",
+    "noMatchDesc": "Try a different keyword.",
+    "deleteTitle": "Delete knowledge base",
+    "deleteConfirm": "Delete “{{name}}”? All documents, chunks and search indexes in it will be permanently removed. This cannot be undone.",
+    "tabs": {
+      "mine": "My knowledge bases",
+      "documents": "Documents",
+      "search": "Retrieval test",
+      "settings": "Settings"
+    },
+    "card": {
+      "docCount": "{{count}} documents",
+      "chunkCount": "{{count}} chunks",
+      "processing": "Processing",
+      "failedCount": "{{count}} failed",
+      "indexOutdated": "Reindex needed",
+      "noDescription": "No description",
+      "more": "More actions"
+    },
+    "dialog": {
+      "createTitle": "New knowledge base",
+      "editTitle": "Edit knowledge base",
+      "createSubmit": "Create",
+      "name": "Name",
+      "namePlaceholder": "e.g. Product manuals, Project notes",
+      "description": "Description",
+      "descriptionPlaceholder": "Briefly describe what this knowledge base contains (optional)",
+      "preset": "Chunking method",
+      "advanced": "Advanced",
+      "chunkTokens": "Chunk size (tokens)",
+      "overlap": "Overlap (%)",
+      "range": "Range {{min}} – {{max}}"
+    },
+    "preset": {
+      "general": {
+        "name": "General",
+        "desc": "Works for most documents; splits by paragraphs and sentences."
+      },
+      "qa": {
+        "name": "Q&A",
+        "desc": "For Q&A pairs and FAQs; keeps each question with its answer."
+      },
+      "book": {
+        "name": "Book",
+        "desc": "For long books and reports; splits along chapter structure."
+      },
+      "laws": {
+        "name": "Regulations",
+        "desc": "For policies and regulations; splits by clauses and articles."
+      }
+    },
+    "stats": {
+      "docs": "{{count}} documents",
+      "indexed": "{{count}} indexed",
+      "processing": "{{count}} processing",
+      "failed": "{{count}} failed",
+      "chunks": "{{count}} chunks"
+    },
+    "status": {
+      "uploaded": "Queued",
+      "parsing": "Parsing",
+      "parsed": "Parsed",
+      "indexing": "Indexing",
+      "indexed": "Indexed",
+      "error_parsing": "Parse failed",
+      "error_indexing": "Index failed",
+      "errorUnknown": "Unknown error",
+      "clickToRetry": "Click to retry"
+    },
+    "docs": {
+      "searchPlaceholder": "Search file name",
+      "selected": "{{count}} selected",
+      "retrySelected": "Retry failed",
+      "deleteSelected": "Delete selected",
+      "clearSelection": "Clear selection",
+      "colName": "File name",
+      "colStatus": "Status",
+      "colChunks": "Chunks",
+      "colSize": "Size",
+      "colUploaded": "Uploaded",
+      "colActions": "Actions",
+      "view": "View",
+      "download": "Download",
+      "retry": "Retry",
+      "emptyTitle": "No documents yet",
+      "emptyDesc": "Upload PDFs, Word, PowerPoint, spreadsheets, text and more. They are parsed and indexed automatically.",
+      "noMatchTitle": "No matching documents",
+      "noMatchDesc": "Try a different file name or status filter.",
+      "deleteTitle": "Delete documents",
+      "deleteConfirm": "Delete the {{count}} selected document(s)? The original files, chunks and search index entries will be removed permanently."
+    },
+    "filter": {
+      "allStatus": "All statuses"
+    },
+    "task": {
+      "queued": "Processing task queued",
+      "running": "Processed {{done}}/{{total}}",
+      "failed": "{{count}} failed",
+      "cancel": "Cancel"
+    },
+    "outdated": {
+      "banner": "The embedding model has changed and the existing index no longer matches it, so search falls back to keyword matching. Rebuild the index to restore semantic search.",
+      "reindex": "Rebuild index"
+    },
+    "upload": {
+      "button": "Upload",
+      "title": "Upload documents",
+      "dropHint": "Drag files here, or click to choose",
+      "limits": "Up to {{max}} MB per file",
+      "supported": "Supported: {{list}}",
+      "pending": "Waiting",
+      "done": "Uploaded",
+      "duplicate": "Already exists, skipped",
+      "retry": "Retry",
+      "cancelAll": "Cancel uploads",
+      "autoProcessHint": "Files are parsed and indexed automatically after upload; follow progress in the document list.",
+      "errors": {
+        "extension": "Unsupported file type: {{ext}}",
+        "empty": "The file is empty",
+        "size": "File exceeds the {{max}} MB limit"
+      }
+    },
+    "doc": {
+      "tabContent": "Parsed content",
+      "tabChunks": "Chunks",
+      "chunkCount": "{{count}} chunks",
+      "totalLines": "{{count}} lines",
+      "totalChunks": "{{count}} chunks",
+      "lines": "Lines {{range}}",
+      "tokens": "{{count}} tokens",
+      "loadPrevious": "Load previous",
+      "loadMore": "Load more",
+      "locate": "Locate in text",
+      "noContent": "No parsed content yet",
+      "noChunks": "No chunks yet. They appear here once the document is indexed."
+    },
+    "search": {
+      "placeholder": "Type a question or keywords, press Enter to search",
+      "button": "Search",
+      "modeLabel": "Mode",
+      "mode": {
+        "hybrid": "Hybrid",
+        "vector": "Semantic",
+        "keyword": "Keyword"
+      },
+      "topK": "Top K",
+      "threshold": "Score threshold",
+      "rerank": "Rerank",
+      "rerankUnavailable": "The administrator has not configured a rerank model",
+      "noIndexed": "This knowledge base has no fully processed documents yet, so searches return nothing.",
+      "indexOutdated": "The index does not match the current embedding model, so this search fell back to keyword matching. Rebuild the index on the Documents tab.",
+      "initialHint": "Try a question to see what the knowledge base retrieves.",
+      "noResults": "No relevant content found",
+      "noResultsHint": "Lower the score threshold or try a different mode.",
+      "summary": "{{count}} results in {{ms}} ms",
+      "scoreBoth": "Retrieval {{score}} · Rerank {{rerank}}"
+    },
+    "settings": {
+      "basic": "General",
+      "chunkNote": "Chunking changes only apply to documents added afterwards. After saving, use “Rebuild index” to apply them to all existing documents.",
+      "rebuildHint": "The new chunking settings only apply to newly added documents. Rebuild the index to apply them to existing ones.",
+      "danger": "Danger zone",
+      "deleteDesc": "Deleting a knowledge base also removes all its documents, chunks and search indexes. This cannot be undone.",
+      "deleteButton": "Delete knowledge base"
+    },
+    "toast": {
+      "created": "Knowledge base created. You can upload documents now.",
+      "updated": "Changes saved",
+      "deleted": "Knowledge base deleted",
+      "docsDeleted": "Deleted {{count}} document(s)",
+      "retryQueued": "Queued {{count}} document(s) for reprocessing",
+      "reindexQueued": "Rebuilding the index for {{count}} document(s)",
+      "reindexNothing": "No documents need reindexing",
+      "taskCancelled": "Cancellation requested"
+    },
+    "errors": {
+      "disabled": "The knowledge base feature is turned off",
+      "notFound": "Knowledge base not found"
+    }
+  },
   "landing": {
     "agentSystem": "Agent Orchestration",
     "agentSystemDesc": "Coordinate multi-step agent work, task handoffs, streaming output, and extensible agent types for real internal workflows.",
@@ -1657,7 +1854,8 @@
     "users": "Users",
     "workspace": "Experts · Skills · Connectors",
     "scheduledTasks": "Scheduled Tasks",
-    "scheduledTasksAdmin": "Scheduled Task Admin"
+    "scheduledTasksAdmin": "Scheduled Task Admin",
+    "knowledge": "Knowledge Base"
   },
   "navDesc": {
     "agents": "Configure and manage AI agents",
@@ -2126,6 +2324,10 @@
     "scheduledTasksAdmin": {
       "title": "Scheduled Task Admin",
       "description": "View and manage scheduled tasks of all users"
+    },
+    "knowledge": {
+      "title": "Knowledge Base",
+      "description": "Create personal knowledge bases and let Kunxiaozhi search and answer from your uploaded documents"
     }
   },
   "openSandboxAdmin": {
@@ -2418,7 +2620,13 @@
     "SCHEDULED_TASK_MIN_INTERVAL_HOURS": "Minimum interval (hours) for interval tasks",
     "SCHEDULED_TASK_CHAT_TOOL_ENABLED": "Allow viewing and managing scheduled tasks in chat",
     "SCHEDULED_TASK_MAX_CONCURRENT_RUNS": "Global concurrency limit for scheduled runs (excess runs wait in queue)",
-    "SCHEDULED_TASK_QUEUE_TIMEOUT_MINUTES": "Max queue wait for scheduled runs in minutes (skipped on timeout)"
+    "SCHEDULED_TASK_QUEUE_TIMEOUT_MINUTES": "Max queue wait for scheduled runs in minutes (skipped on timeout)",
+    "KB_ENABLED": "Enable the personal knowledge base feature. When off, the sidebar entry is hidden and all knowledge base APIs report the feature as disabled.",
+    "KB_EMBEDDING_MODEL_ID": "Model card ID used to embed knowledge base content (kind=embedding). Leave empty to reuse the native memory embedding model. Existing knowledge bases need reindexing after the model changes.",
+    "KB_RERANK_MODEL_ID": "Model card ID used to rerank knowledge base search results (kind=rerank). Leave empty to disable reranking.",
+    "KB_WORKER_CONCURRENCY": "Concurrency of knowledge base background processing (1-16). Requires a service restart to take effect.",
+    "KB_MAX_FILE_MB": "Maximum size (MB) of a single file uploaded to a knowledge base.",
+    "KB_EMBEDDING_BATCH_SIZE": "Number of text chunks sent per embedding request when indexing a knowledge base (1-256)."
   },
   "settings": {
     "defaultModel": "Default Model",
