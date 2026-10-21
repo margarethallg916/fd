@@ -1,0 +1,21 @@
+{"_example": "Fill with {\"file\": \"<path>\", \"reason\": \"<why>\"}. Put spec/research files only — no code paths. Run `python .trellis/scripts/get_context.py --mode packages` to list available specs. Delete this line once real entries are added."}
+{"file": ".trellis/tasks/10-21-kb-core-ingestion/prd.md", "reason": "task artifact"}
+{"file": ".trellis/tasks/10-21-kb-core-ingestion/design.md", "reason": "task artifact"}
+{"file": ".trellis/tasks/10-21-kb-core-ingestion/implement.md", "reason": "task artifact"}
+{"file": ".trellis/tasks/10-21-personal-knowledge-base/prd.md", "reason": "task artifact"}
+{"file": ".trellis/spec/backend/database-guidelines.md", "reason": "backend spec"}
+{"file": ".trellis/spec/backend/error-handling.md", "reason": "backend spec"}
+{"file": ".trellis/spec/backend/quality-guidelines.md", "reason": "backend spec"}
+{"file": ".trellis/spec/backend/logging-guidelines.md", "reason": "backend spec"}
+{"file": ".trellis/spec/backend/managed-storage-url.md", "reason": "backend spec"}
+{"file": ".trellis/spec/backend/upload-dangerous-extensions.md", "reason": "backend spec"}
+{"file": ".trellis/spec/backend/read-document-dispatch.md", "reason": "backend spec"}
+{"file": ".trellis/spec/backend/redis-sentinel.md", "reason": "backend spec"}
+{"file": ".trellis/spec/frontend/component-guidelines.md", "reason": "frontend spec"}
+{"file": ".trellis/spec/frontend/hook-guidelines.md", "reason": "frontend spec"}
+{"file": ".trellis/spec/frontend/state-management.md", "reason": "frontend spec"}
+{"file": ".trellis/spec/frontend/quality-guidelines.md", "reason": "frontend spec"}
+{"file": ".trellis/spec/frontend/type-safety.md", "reason": "frontend spec"}
+{"file": ".trellis/spec/frontend/workbuddy-card-banner.md", "reason": "frontend spec"}
+{"file": ".trellis/spec/guides/cross-layer-thinking-guide.md", "reason": "cross-layer contract checks"}
+{"file": ".trellis/tasks/10-21-personal-knowledge-base/research/baseline-tests.md", "reason": "baseline failures to compare against"}

@@ -1,0 +1,9 @@
+{"_example": "Fill with {\"file\": \"<path>\", \"reason\": \"<why>\"}. Put spec/research files only — no code paths. Run `python .trellis/scripts/get_context.py --mode packages` to list available specs. Delete this line once real entries are added."}
+{"file": ".trellis/tasks/10-21-kb-core-ingestion/prd.md", "reason": "task artifact"}
+{"file": ".trellis/tasks/10-21-kb-core-ingestion/design.md", "reason": "task artifact"}
+{"file": ".trellis/tasks/10-21-kb-core-ingestion/implement.md", "reason": "task artifact"}
+{"file": ".trellis/tasks/10-21-personal-knowledge-base/prd.md", "reason": "task artifact"}
+{"file": ".trellis/tasks/10-21-personal-knowledge-base/research/kxz-backend-infra.md", "reason": "backend conventions: routes, mongo, settings, storage, upload, tests"}
+{"file": ".trellis/tasks/10-21-personal-knowledge-base/research/kxz-backend-ai.md", "reason": "MinerU, embedding/rerank cards, arq, WS, tools"}
+{"file": ".trellis/tasks/10-21-personal-knowledge-base/research/kxz-frontend.md", "reason": "frontend conventions: nav, primitives, api layer, i18n, polling"}
+{"file": ".trellis/tasks/10-21-personal-knowledge-base/research/yuxi-kb.md", "reason": "Yuxi reference: state machine, queue, chunking, retrieval, UX"}
